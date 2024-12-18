@@ -43,5 +43,7 @@ for i in range(num_commits):
         subprocess.run(["git", "commit", "-m", f"Füge {file_name} hinzu - Commit {i + 1}"], check=True)
         print(f"{file_name} wurde wieder hinzugefügt und committed.")
 
+subprocess.run(["git", "push"], check=True)
+
 shutil.rmtree(backup_dir)
 print("Commit-Spam abgeschlossen.")
