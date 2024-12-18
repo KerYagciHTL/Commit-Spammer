@@ -25,6 +25,7 @@ except ValueError:
 backup_dir = "backup"
 os.makedirs(backup_dir, exist_ok=True)
 
+# Erstelle die benötigte Anzahl an Commits
 for i in range(num_commits):
     print(f"Starte Commit-Runde {i + 1} von {num_commits}...")
     for file_name in file_list:
@@ -43,7 +44,12 @@ for i in range(num_commits):
         subprocess.run(["git", "commit", "-m", f"Füge {file_name} hinzu - Commit {i + 1}"], check=True)
         print(f"{file_name} wurde wieder hinzugefügt und committed.")
 
-subprocess.run(["git", "push"], check=True)
+subprocess.run(["git", "push", "--force"], check=True)
 
 shutil.rmtree(backup_dir)
-print("Commit-Spam abgeschlossen.")
+print("Commit process completed.")
+print()
+print("1. Please note that this may take a few minutes to complete.")
+print("2. If the commit doesn't appear, try making a new commit manually and wait again for a few minutes.")
+print("If both steps don't work, you can try again, but please be aware that this may result in multiple unwanted commits.")
+input()
